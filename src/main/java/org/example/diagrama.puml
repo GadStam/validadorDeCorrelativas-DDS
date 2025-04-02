@@ -3,12 +3,12 @@
 
 
 
-abstract class Materia{
- #nombre : String
- #codigo : Integer
- #materiasCorrelativas : List<Materia>
+class Materia{
+ -nombre : String
+ -codigo : Integer
+ -materiasCorrelativas : List<Materia>
 
- +esCorrelativa(materia : Materia) : Boolean
+ +agregarCorrelativas(materia : Materia) : Boolean
 }
 
 class Alumno{
@@ -16,11 +16,16 @@ class Alumno{
 -legajo : Integer
 -materiasAprobadas : List<Materia>
 
- +inscribirse(materia : Materia) : Boolean
+ +puedeInscribirse(materia : Materia) : Boolean
+ +agregarMateriaAprobada(materia : Materia) : Void
 
 }
 
 class Inscripcion{
 +aprobada(unAlumno:Alumno, unaMateria:Materia) : Boolean
 }
+
+Alumno --> "*" Materia: materias
+Inscripcion --> Alumno: alumno
+Inscripcion --> Materia: materia
 @enduml
